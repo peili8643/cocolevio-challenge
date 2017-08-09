@@ -15,9 +15,11 @@ def findMaxProfit(totalMaterials,company,amount,price,pricePer):
     if totalMaterials <= 10:
         maxProfit = price[totalMaterial-1]
         for index in range(len(totalMaterials)):
+            pass
     #if the totalMaterials is more than 10
     else:
-
+        pass
+    
 #returns a list of all the combinations of ways to sum to a specific value
 #given a set of numbers
 def subset_sum(numbers, target, partial=[],combination=[]):
@@ -42,7 +44,6 @@ def main():
     amount = [1,2,3,4,5,6,7,8,9,10]
     price = [1,5,8,9,10,17,17,20,24,30]
 
-    
     #finding price per unit of material
     pricePer = []
     for index in range(len(amount)):
@@ -50,9 +51,23 @@ def main():
     print(pricePer)
     
     
-    totalMaterials = input("Enter total amount of materials: ")
+    totalMaterials = int(input("Enter total amount of materials: "))
 
+    #finding all the combinations so the amount adds up to the total materials
+    amountCombination = subset_sum(amount,totalMaterials)
+    profitCombination = []
+
+    #finding all the combinations of different profits using the different amounts
+    for index in range(len(amountCombination)):
+        testCombo = amountCombination[index]
+        profit = 0
+        #finding the corresponding price to the item amount
+        for item in testCombo:
+            profit += price[item-1]
+            
+        profitCombination.append(profit)
+
+    print(profitCombination)
     
     
-
 main()
