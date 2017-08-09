@@ -9,16 +9,18 @@
 #maximize their profits. This scenario happens frequently so we need to be able
 #to compute the answer relatively quickly and with minimal processing power.
 
-def findMaxProfit(totalMaterials,company,amount,price,pricePer):
+def findMaxProfit(profitCombination):
 
-    #base case of recursion
-    if totalMaterials <= 10:
-        maxProfit = price[totalMaterial-1]
-        for index in range(len(totalMaterials)):
-            pass
-    #if the totalMaterials is more than 10
-    else:
-        pass
+    maxProfit = profitCombination[0]
+
+    for index in range(len(profitCombination)):
+        if profitCombination[index] > maxProfit:
+            maxProfit = profitCombination[index]
+            #keep track of which combination had the highest profit
+            bestCombination = index
+
+    return (bestCombination)
+
     
 #returns a list of all the combinations of ways to sum to a specific value
 #given a set of numbers
@@ -43,13 +45,6 @@ def main():
     company = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
     amount = [1,2,3,4,5,6,7,8,9,10]
     price = [1,5,8,9,10,17,17,20,24,30]
-
-    #finding price per unit of material
-    pricePer = []
-    for index in range(len(amount)):
-        pricePer.append(price[index]/amount[index])
-    print(pricePer)
-    
     
     totalMaterials = int(input("Enter total amount of materials: "))
 
@@ -68,6 +63,18 @@ def main():
         profitCombination.append(profit)
 
     print(profitCombination)
-    
+    bestCombo = findMaxProfit(profitCombination)
+    print(bestCombo)
+
+    print(amountCombination[bestCombo])
     
 main()
+
+'''
+    #finding price per unit of material
+    pricePer = []
+    for index in range(len(amount)):
+        pricePer.append(price[index]/amount[index])
+    print(pricePer)
+'''
+
