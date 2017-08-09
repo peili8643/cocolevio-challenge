@@ -17,8 +17,22 @@ def findMaxProfit(totalMaterials,company,amount,price,pricePer):
         for index in range(len(totalMaterials)):
     #if the totalMaterials is more than 10
     else:
-        
-            
+
+#returns a list of all the combinations of ways to sum to a specific value
+#given a set of numbers
+def subset_sum(numbers, target, partial=[],combination=[]):
+    s = sum(partial)
+    
+    # check if the partial sum is equals to target
+    if s == target:
+        combination.append(partial)
+    else:
+        for index in range(len(numbers)):
+            n = numbers[index]
+            remaining = numbers[index+1:]
+            subset_sum(remaining, target, partial + [n]) 
+
+    return(combination)           
     
     
 def main():
