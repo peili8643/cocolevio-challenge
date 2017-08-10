@@ -14,6 +14,10 @@ def findMaxProfit(profitCombination):
     maxProfit = profitCombination[0]
 
     for index in range(len(profitCombination)):
+        #the only combination possible will be the best combination
+        if len(profitCombination) == 1:
+            bestCombination = index
+            
         if profitCombination[index] > maxProfit:
             maxProfit = profitCombination[index]
             #keep track of which combination had the highest profit
@@ -36,8 +40,17 @@ def subset_sum(numbers, target, partial=[],combination=[]):
             remaining = numbers[index+1:]
             subset_sum(remaining, target, partial + [n]) 
 
-    return(combination)           
+    return(combination)
+
+#finds the corresponding company name given a list of the amounts
+def findCompany(totalCompanies,amountList):
+
+    companies = []
     
+    for item in amountList:
+        companies.append(totalCompanies[item-1])
+
+    print("The list of companies you should choose from is:", companies)
     
 def main():
 
@@ -64,17 +77,11 @@ def main():
 
     print(profitCombination)
     bestCombo = findMaxProfit(profitCombination)
-    print(bestCombo)
 
-    print(amountCombination[bestCombo])
-    
+    bestAmounts = amountCombination[bestCombo]
+
+    findCompany(company,bestAmounts)
+
 main()
 
-'''
-    #finding price per unit of material
-    pricePer = []
-    for index in range(len(amount)):
-        pricePer.append(price[index]/amount[index])
-    print(pricePer)
-'''
 
