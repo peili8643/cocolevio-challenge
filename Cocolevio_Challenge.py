@@ -22,6 +22,8 @@ def findMaxProfit(profitCombination):
             maxProfit = profitCombination[index]
             #keep track of which combination had the highest profit
             bestCombination = index
+        else:
+            bestCombination = index
 
     return (bestCombination)
 
