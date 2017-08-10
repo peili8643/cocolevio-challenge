@@ -61,26 +61,30 @@ def main():
     
     totalMaterials = int(input("Enter total amount of materials: "))
 
-    #finding all the combinations so the amount adds up to the total materials
-    amountCombination = subset_sum(amount,totalMaterials)
-    profitCombination = []
+    #if the total amount of materials is enough for everyone, then all companies get what they want
+    if totalMaterials > sum(amount):
+        print("The list of companies you should choose from is all of them:", company)
+    else:
+        #finding all the combinations so the amount adds up to the total materials
+        amountCombination = subset_sum(amount,totalMaterials)
+        profitCombination = []
 
-    #finding all the combinations of different profits using the different amounts
-    for index in range(len(amountCombination)):
-        testCombo = amountCombination[index]
-        profit = 0
-        #finding the corresponding price to the item amount
-        for item in testCombo:
-            profit += price[item-1]
-            
-        profitCombination.append(profit)
+        #finding all the combinations of different profits using the different amounts
+        for index in range(len(amountCombination)):
+            testCombo = amountCombination[index]
+            profit = 0
+            #finding the corresponding price to the item amount
+            for item in testCombo:
+                profit += price[item-1]
+                
+            profitCombination.append(profit)
 
-    print(profitCombination)
-    bestCombo = findMaxProfit(profitCombination)
+        print(profitCombination)
+        bestCombo = findMaxProfit(profitCombination)
 
-    bestAmounts = amountCombination[bestCombo]
+        bestAmounts = amountCombination[bestCombo]
 
-    findCompany(company,bestAmounts)
+        findCompany(company,bestAmounts)
 
 main()
 
