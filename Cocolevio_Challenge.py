@@ -28,7 +28,7 @@ def findMaxProfit(profitCombination):
     
 #returns a list of all the combinations of ways to sum to a specific value
 #given a set of numbers
-def subset_sum(numbers, target, partial=[],combination=[]):
+def findSumCombo(numbers, target, partial=[],combination=[]):
     s = sum(partial)
     
     # check if the partial sum is equals to target
@@ -38,7 +38,7 @@ def subset_sum(numbers, target, partial=[],combination=[]):
         for index in range(len(numbers)):
             n = numbers[index]
             remaining = numbers[index+1:]
-            subset_sum(remaining, target, partial + [n]) 
+            findSumCombo(remaining, target, partial + [n]) 
 
     return(combination)
 
@@ -66,7 +66,7 @@ def main():
         print("The list of companies you should choose from is all of them:", company)
     else:
         #finding all the combinations so the amount adds up to the total materials
-        amountCombination = subset_sum(amount,totalMaterials)
+        amountCombination = findSumCombo(amount,totalMaterials)
         profitCombination = []
 
         #finding all the combinations of different profits using the different amounts
@@ -79,7 +79,6 @@ def main():
                 
             profitCombination.append(profit)
 
-        print(profitCombination)
         bestCombo = findMaxProfit(profitCombination)
 
         bestAmounts = amountCombination[bestCombo]
